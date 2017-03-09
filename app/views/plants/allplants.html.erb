@@ -1,0 +1,6 @@
+<% @plants.each do |plant| %>
+<h2><%= plant.name %></h2>
+<img src="<%= plant.image %>">
+<p> Price: $ <%= plant.price %> </p>
+<p> Description: <%= plant.description %> </p>
+<% end %>
