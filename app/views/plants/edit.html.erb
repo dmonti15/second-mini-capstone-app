@@ -1,0 +1,22 @@
+<h1>Edit Plant Information</h1>
+
+<%= form_tag "/plants/#{@plant.id}", method: :patch do %>
+
+<div>
+Name: <input type="text" name="name" value="<% @plant.name %>" name="name">
+</div>
+
+<div>
+Price: <input type="text" name="price" value="<% @plant.price %>" name="price">
+</div>
+
+<div>
+Image: <input type="text" name="image" value="<% @plant.image %>" name="image">
+</div>
+
+<div>
+Description: <input type="text" name="description" value="<% @plant.description %>" name="description">
+</div>
+
+<input type="submit" value="Create Plant">
+<% end %>

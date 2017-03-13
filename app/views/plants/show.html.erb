@@ -1,0 +1,10 @@
+<h1>Plant Info</h1>
+<h2><%= @plant.name %></h2>
+<h2><%= @plant.image %></h2>
+<h2><%= @plant.price %></h2>
+<h2><%= @plant.description %></h2>
+
+<%= form_tag "/plant/#{@plant.id}", method: :delete do %>
+  <input type="submit" value="Destroy Plant Information"
+<% end %>
+<a href="/plants">Back to all plants</a>

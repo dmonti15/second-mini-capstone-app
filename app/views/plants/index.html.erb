@@ -1,5 +1,6 @@
+<h2>Available Product</h2>
 <% @plants.each do |plant| %>
-<h2><%= plant.name %></h2>
+<h3><a href="/plants/<%= plant.id %>"><%= plant.name %></a></h3> 
 <img src="<%= plant.image %>">
 <p> Price: $ <%= plant.price %> </p>
 <p> Description: <%= plant.description %> </p>
