@@ -1,7 +1,15 @@
 <h2>Available Product</h2>
-<% @plants.each do |plant| %>
+<% @plants.each_slice(3) do |plants| %>
+<div class="row">
+<% plants.each do |plant| %>
+<div class="col-md-4">
+<div class="well">
 <h3><a href="/plants/<%= plant.id %>"><%= plant.name %></a></h3> 
-<img src="<%= plant.image %>">
+<img class="plant-image" src="<%= plant.image %>">
 <p> Price: $ <%= plant.price %> </p>
 <p> Description: <%= plant.description %> </p>
+</div>
+</div>
+<% end %>
+</div>
 <% end %>
