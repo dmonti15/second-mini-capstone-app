@@ -1,0 +1,8 @@
+<h1>Your Cart:</h1>
+<% @carted_plants.each do |carted_plant| %>
+<p>Plant Name: <%= carted_plant.plant.name %></p>
+<p>Quantity: <%= carted_plant.quantity %></p>
+<% end %>
+
+
+
