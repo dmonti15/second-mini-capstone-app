@@ -1,0 +1,2 @@
+class CartedPlant < ApplicationRecord
+end

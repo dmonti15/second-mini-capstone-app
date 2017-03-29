@@ -1,10 +1,32 @@
 <h1>Plant Info</h1>
-<h2><%= @plant.name %></h2>
-<h2><%= @plant.image %></h2>
-<h2><%= @plant.price %></h2>
-<h2><%= @plant.description %></h2>
 
-<%= form_tag "/plant/#{@plant.id}", method: :delete do %>
-  <input type="submit" value="Destroy Plant Information"
+<h3>Categories</h3>
+<ul>
+<% @plant.categories.each do |category| %>
+<li><%= category.name %></li>
+<% end %>
+</ul>
+
+<h2><%= @plant.name %></h2>
+<img class="plant-image" src="<%= Image.find_by(plant_id: @plant.id).url %>">
+<p>Price: $<%= @plant.price %></p>
+
+
+<p><%= @plant.description %></p>
+
+<%= form_tag "/plants/#{@plant.id}", method: :destroy do %>
+  <input type="submit" value="Destroy Plant Information">
 <% end %>
 <a href="/plants">Back to all plants</a>
+
+<h3>Order:</h3>
+<%= form_tag "/orders", method: :post do %>
+
+<div>
+Quantity: <input type="text" value="Insert quantity" name="quantity">
+<%= hidden_field_tag 'plant_id', @plant.id %>
+
+</div>
+
+<input type="submit" value="Buy">
+<% end %>

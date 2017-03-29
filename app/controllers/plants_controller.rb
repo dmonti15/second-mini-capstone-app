@@ -1,23 +1,45 @@
 class PlantsController < ApplicationController
 
   def index
-    @plants = Plant.all
+    if params[:discounted] == "true"
+      @plants = Plant.where("price < ?", 60)
+    else
+      sort_attribute = params[:sort_by] || "name"
+      sort_attribute_order = params[:sort_order] || "asc"
+      @plants = Plant.all.order(sort_attribute => sort_attribute_order)
+    end
     render "index.html.erb"
   end
 
   def new
-    render "new.html.erb"
+    if params[:new_type] == "supplier"
+      render "new_supplier.html.erb"
+    elsif params[:new_type] == "plant"
+      render "new_plant.html.erb"
+    end
   end
 
-  def create
-    plant = Plant.new(
+  def create_plant
+    plant = Plant.create(
       name: params[:name],
       price: params[:price],
-      image: params[:image],
       description: params[:description]
       )
-    plant.save
+
+    image = Image.create(
+      url: params[:image],
+      plant_id: @plant.id)
     render "create.html.erb"
+  end
+
+  def create_supplier
+    supplier = Supplier.new(
+      name: params[:name],
+      email: params[:email],
+      phone_number: params[:phone_number]
+      )
+    supplier.save
+    redirect_to "/plants"
   end
 
   def show

@@ -1,3 +1,6 @@
+<% if current_user %>
+<h1> Hi <%= current_user.name.split(" ").map{|x| x.capitalize}.join(" ") %>!</h1>
+<% end %>
 <h2>Available Product</h2>
 <% @plants.each_slice(3) do |plants| %>
 <div class="row">
@@ -5,7 +8,7 @@
 <div class="col-md-4">
 <div class="well">
 <h3><a href="/plants/<%= plant.id %>"><%= plant.name %></a></h3> 
-<img class="plant-image" src="<%= plant.image %>">
+<img class="plant-image" src="<%= Image.find_by(plant_id: plant.id).url %>">
 <p> Price: $ <%= plant.price %> </p>
 <p> Description: <%= plant.description %> </p>
 </div>
