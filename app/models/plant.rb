@@ -1,7 +1,9 @@
 class Plant < ApplicationRecord
   belongs_to :supplier
   has_many :images
-  has_many :orders
+  
+  has_many :carted_plants
+  has_many :orders, through: :carted_plants
 
   has_many :category_plants
   has_many :categories, through: :category_plants
